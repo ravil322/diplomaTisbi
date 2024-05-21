@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="content">
+
+    <div class="body wide">
+
+        <div class="table-wrapper">
+            <table id="articles">
+                <thead>
+                <!--<th><input type="checkbox" onclick="selectAll();"/></th>-->
+                <th>ID</th>
+                <th>Название</th>
+                <th>Автор</th>
+                <th>Дата выпуска</th>
+                <th>URL статьи</th>
+                <th>DOI</th>
+                </thead>
+                <tbody>
+                <tr th:each="a,counter : ${articles}" th:with="i = 1"
+                    th:class="${counter.odd} ? 'clickable white' : 'clickable grey'"
+                    th:title="${a.id}">
+                    <td th:text="${a.id}"></td>
+                    <td th:text="${a.title}"></td>
+                    <td th:text="${a.authors}"></td>
+                    <td th:text="${a.publicationYear}"></td>
+                    <td th:text="${a.articleUrl}"></td>
+                    <td th:text="${a.doi}"></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $('select').chosen();
+    });
+
+</script>
+</body>
+
+</html>
